@@ -44,8 +44,14 @@ class SshClient(object):
         for cmd in cmds:
             self.chan.send(cmd)
 
+    # 从channel获取信息，在一条命令执行玩后
     def get_result_from_chan(self):
-        ret = self.chan.recv(1024)
+        self.chan.recv(4096)
+        while True:
+            if self.chan.recv_ready():
+                time.sleep(0.1)
+                ret = self.chan.recv(2048)
+                break
         return ret.decode()
 
     def close(self):
