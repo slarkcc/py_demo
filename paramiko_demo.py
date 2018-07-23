@@ -3,7 +3,7 @@ import time
 
 
 class SshClient(object):
-    def __init__(self, host="10.10.57.1", username="chenguang", password="112992", port=22):
+    def __init__(self, host="10.x.x.1", username="username", password="password", port=22):
         self.host = host
         self.username = username
         self.password = password
